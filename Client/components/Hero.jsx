@@ -4,11 +4,10 @@ import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { Play, Info, Star, X, ChevronLeft, ChevronRight } from 'lucide-react'
 
-// Featured banner carousel, Filmhouse-style. Pulls the most popular titles
-// and rotates through them as full-bleed hero slides, each with a real
+
 // "Play Trailer" action (Jikan provides a YouTube embed url per title).
 const fetchFeatured = async () => {
-  const res = await axios.get('http://localhost:5000/api/v1/animes/top')
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/animes/top`)
   return res.data.data
 }
 
@@ -43,7 +42,7 @@ const Hero = () => {
         <div className='px-8 sm:px-14 max-w-2xl'>
           <span className='fh-badge mb-4'>FEATURED</span>
           <h1 className='text-4xl sm:text-6xl font-extrabold leading-tight mt-4'>
-            The best of <span className='text-[var(--fh-red)]'>anime</span>, on the big screen.
+            The best of anime on the big screen.
           </h1>
           <p className='text-white/60 mt-4'>
             {isLoading ? 'Loading featured titles…' : 'Featured titles are taking a break — check the collection below.'}
@@ -80,7 +79,7 @@ const Hero = () => {
           )}
         </div>
 
-        <h1 className='text-3xl sm:text-5xl font-extrabold leading-tight line-clamp-2'>
+        <h1 className='text-3xl sm:text-5xl font-extrabold  line-clamp-2'>
           {anime.title}
         </h1>
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 import useAuthStore from '../store/useAuthStore'
@@ -7,7 +6,7 @@ import api from '../lib/api'
 import { ArrowLeft, Play, Bookmark, Star, Clock, Calendar, X } from 'lucide-react'
 
 const fetchAnimeById = async (id) => {
-    const result = await axios.get(`http://localhost:5000/api/v1/animes/${id}`)
+    const result = await api.get(`/animes/${id}`)
     return result.data.data
 }
 

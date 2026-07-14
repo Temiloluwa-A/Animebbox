@@ -5,7 +5,10 @@ const path = require("path")
 const axios = require("axios")
 const cors = require('cors')
 dotenv.config()
-app.use(cors());
+app.use(cors({
+    origin:process.env.CLIENT_URL,
+    Credential: true
+}));
 app.use(express.json()) //allowws us to parse JSON bodies in requests in form of req.body
 
 const MovieRoutes = require("./routes/movie.route")

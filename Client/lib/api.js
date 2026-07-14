@@ -3,7 +3,7 @@ import useAuthStore from '../store/useAuthStore'
 
 // axios instance for our backend. attaches the JWT to every request if we have one.
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api/v1',
+    baseURL: `${import.meta.env.VITE_API_URL}/api/v1`,
 })
 // interceptor to attach the JWT token to every request if it exists
 api.interceptors.request.use((config) => {
