@@ -5,28 +5,9 @@ const path = require("path")
 const axios = require("axios")
 const cors = require('cors')
 dotenv.config()
-// Allowed browser origins. Compare without a trailing slash so a stray "/" in
-// CLIENT_URL doesn't block every request. We never throw on a mismatch — that
-// produces a confusing 500 with no CORS headers (the browser then just reports
-// "CORS error"); instead we simply don't grant CORS to unknown origins.
-const staticAllowed = [process.env.CLIENT_URL, "http://localhost:5173"]
-    .filter(Boolean)
-    .map((o) => o.replace(/\/$/, ""));
-const isAllowedOrigin = (origin) => {
-    const o = origin.replace(/\/$/, "");
-    if (staticAllowed.includes(o)) return true;
-    // allow our Render-hosted frontend(s) without hardcoding the exact subdomain
-    if (/^https:\/\/[a-z0-9-]+\.onrender\.com$/i.test(o)) return true;
-    return false;
-};
-app.use(cors({
-    origin: (origin, cb) => {
-        // no Origin header = non-browser client (curl, same-origin) — allow it
-        if (!origin) return cb(null, true);
-        return cb(null, isAllowedOrigin(origin));
-    },
-    credentials: true,
-}));
+// Auth is via JWT in the Authorization header (no cookies), so we don't need a
+// credentialed, origin-restricted CORS setup — allow all origins.
+app.use(cors());
 app.use(express.json()) //allowws us to parse JSON bodies in requests in form of req.body
 
 const MovieRoutes = require("./routes/movie.route")
