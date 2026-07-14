@@ -5,17 +5,25 @@ const path = require("path")
 const axios = require("axios")
 const cors = require('cors')
 dotenv.config()
-// allow the deployed client + local dev; compare without a trailing slash so a
-// stray "/" in CLIENT_URL doesn't cause the browser to block every request.
-const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:5173"]
+// Allowed browser origins. Compare without a trailing slash so a stray "/" in
+// CLIENT_URL doesn't block every request. We never throw on a mismatch — that
+// produces a confusing 500 with no CORS headers (the browser then just reports
+// "CORS error"); instead we simply don't grant CORS to unknown origins.
+const staticAllowed = [process.env.CLIENT_URL, "http://localhost:5173"]
     .filter(Boolean)
     .map((o) => o.replace(/\/$/, ""));
+const isAllowedOrigin = (origin) => {
+    const o = origin.replace(/\/$/, "");
+    if (staticAllowed.includes(o)) return true;
+    // allow our Render-hosted frontend(s) without hardcoding the exact subdomain
+    if (/^https:\/\/[a-z0-9-]+\.onrender\.com$/i.test(o)) return true;
+    return false;
+};
 app.use(cors({
     origin: (origin, cb) => {
         // no Origin header = non-browser client (curl, same-origin) — allow it
         if (!origin) return cb(null, true);
-        if (allowedOrigins.includes(origin.replace(/\/$/, ""))) return cb(null, true);
-        return cb(new Error(`Origin ${origin} not allowed by CORS`));
+        return cb(null, isAllowedOrigin(origin));
     },
     credentials: true,
 }));
