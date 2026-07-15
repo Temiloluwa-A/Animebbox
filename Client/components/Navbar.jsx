@@ -45,7 +45,7 @@ const Navbar = () => {
       <nav className='max-w-7xl mx-auto h-[70px] flex items-center gap-4 px-4 sm:px-6'>
         <Link to='/' className='flex items-center gap-2 shrink-0'>
            <img src="logo.png" alt="" style={{width: 30}} />
-          <span className='text-2xl'>
+          <span className='text-xl sm:text-2xl'>
             {/* <img src="logo.png" alt="" style={{width: 30}} /> */}
             <span className='font-extrabold text-white'>film</span>
             <span className='font-light text-white'>house</span>
@@ -136,7 +136,7 @@ const Navbar = () => {
             <ChevronDown size={20} className=' pointer-events-none' />
           </div>
 
-          <div className='flex items-center gap-6 text-sm text-white/70'>
+          <div className='hidden sm:flex items-center gap-6 text-sm text-white/70'>
             <span className='cursor-pointer hover:text-white transition-colors'>Gift Cards</span>
             <span className='cursor-pointer hover:text-white transition-colors'>Buy Food</span>
           </div>

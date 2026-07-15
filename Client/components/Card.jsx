@@ -93,14 +93,14 @@ const Card = ({ overrideStatus }) => {
                 onClick={() => saveAnime.mutate(anime, { onSuccess: () => window.alert('Added to watchlist') })}
                 disabled={saveAnime.isPending}
                 aria-label='Save to watchlist'
-                className='absolute top-2 left-2 z-10 p-1.5 rounded-full bg-black/60 backdrop-blur-sm hover:bg-[var(--fh-red)] opacity-0 group-hover:opacity-100 transition-all disabled:opacity-60'
+                className='absolute top-2 left-2 z-10 p-1.5 rounded-full bg-black/60 backdrop-blur-sm hover:bg-[var(--fh-red)] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all disabled:opacity-60'
               >
                 <Bookmark size={14} />
               </button>
             )}
 
             {/* Hover reveal: play pill (center) + info panel (bottom) */}
-            <div className='absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col'>
+            <div className='absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col'>
               {/* Play Trailer pill */}
               <div className='flex-1 flex items-center justify-center'>
                 <button
