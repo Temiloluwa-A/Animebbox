@@ -122,11 +122,12 @@ const Card = ({ overrideStatus }) => {
                   onClick={() => navigate(`/card-details/${anime.mal_id}`)}
                   className='mainbutton w-full mt-3 py-3 rounded-md text-xs font-semibold'
                 >
-                  Buy Tickets
+                  <span className='md:hidden'>More Info</span>
+                  <span className='hidden md:inline'>Buy Tickets</span>
                 </button>
                 <button
                   onClick={() => navigate(`/card-details/${anime.mal_id}`)}
-                  className='flex items-center justify-center w-full gap-1 text-sm text-white/80 hover:text-white transition-colors mt-2'
+                  className='hidden md:flex items-center justify-center w-full gap-1 text-sm text-white/80 hover:text-white transition-colors mt-2'
                 >
                   More Info <ChevronRight size={15} />
                 </button>

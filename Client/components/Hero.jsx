@@ -38,7 +38,7 @@ const Hero = () => {
   // Graceful fallback so the page always looks intentional if the API is flaky.
   if (isLoading || isError || slides.length === 0) {
     return (
-      <div className='relative h-[420px] sm:h-[520px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black flex items-center'>
+      <div className='relative h-[420px] sm:h-[520px] rounded-none sm:rounded-2xl overflow-hidden -mx-6 sm:mx-0 bg-gradient-to-br from-[#1a1a1a] to-black flex items-center'>
         <div className='px-8 sm:px-14 max-w-2xl'>
           <span className='fh-badge mb-4'>FEATURED</span>
           <h1 className='text-4xl sm:text-6xl font-extrabold leading-tight mt-4'>
@@ -57,7 +57,7 @@ const Hero = () => {
   const trailerUrl = anime.trailer?.embed_url
 
   return (
-    <div className='relative h-[420px] sm:h-[520px] rounded-2xl overflow-hidden'>
+    <div className='relative h-[420px] sm:h-[520px] rounded-none sm:rounded-2xl overflow-hidden -mx-6 sm:mx-0'>
       {/* Backdrop */}
       <img
         src={backdrop}
@@ -91,21 +91,21 @@ const Hero = () => {
           {trailerUrl ? (
             <button
               onClick={() => setTrailerOpen(true)}
-              className='mainbutton flex items-center gap-2 px-6 py-3 rounded-lg text-sm sm:text-base'
+              className='mainbutton flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-base'
             >
               <Play size={18} className='fill-white' /> Play Trailer
             </button>
           ) : (
             <button
               onClick={() => navigate(`/card-details/${anime.mal_id}`)}
-              className='mainbutton flex items-center gap-2 px-6 py-3 rounded-lg text-sm sm:text-base'
+              className='mainbutton flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-base'
             >
               <Info size={18} /> View Details
             </button>
           )}
           <button
             onClick={() => navigate(`/card-details/${anime.mal_id}`)}
-            className='fh-btn-outline flex items-center gap-2 px-6 py-3 rounded-lg text-sm sm:text-base'
+            className='fh-btn-outline flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-base'
           >
             <Info size={18} /> More Info
           </button>
@@ -118,14 +118,14 @@ const Hero = () => {
           <button
             onClick={() => setIndex((i) => (i - 1 + slides.length) % slides.length)}
             aria-label='Previous slide'
-            className='absolute left-0 top-1/2 -translate-y-1/2 z-10 px-3 py-8 rounded-lg bg-black/50 backdrop-blur-sm'
+            className='hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 z-10 px-3 py-8 rounded-lg bg-black/50 backdrop-blur-sm'
           >
             <ChevronLeft size={22} />
           </button>
           <button
             onClick={() => setIndex((i) => (i + 1) % slides.length)}
             aria-label='Next slide'
-            className='absolute right-0 top-1/2 -translate-y-1/2 z-10 px-3 py-8 rounded-lg bg-black/50 backdrop-blur-sm'
+            className='hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 z-10 px-3 py-8 rounded-lg bg-black/50 backdrop-blur-sm'
           >
             <ChevronRight size={22} />
           </button>
